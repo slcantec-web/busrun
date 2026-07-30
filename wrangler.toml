@@ -14,4 +14,4 @@ database_name = "busrun-db"
 database_id = "c6b23041-6811-474b-a24e-3461b9139793"
 
 [vars]
-ALLOWED_ORIGIN = "https://sisaracoach.lk"
+ALLOWED_ORIGIN = "https://busrun.pages.dev"
