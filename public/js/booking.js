@@ -10,7 +10,7 @@
   // Cloudflare dashboard under Workers & Pages. Once you attach a real
   // domain and route /api/* to the Worker on that same domain, switch
   // this back to the relative path "/api/bookings".
-  const API_ENDPOINT = "https://busrun-api.<your-subdomain>.workers.dev/api/bookings";
+  const API_ENDPOINT = "https://busrun.slcantec.workers.dev/api/bookings";
 
   const form = document.getElementById("booking-form");
   if (!form) return;
