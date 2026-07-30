@@ -9,7 +9,7 @@
 // <your-subdomain> in the output of `wrangler deploy`, or on the Cloudflare
 // dashboard under Workers & Pages. Once you attach a real domain and route
 // /api/* to the Worker on that same domain, switch this back to "/api".
-const API_BASE = "https://busrun-api.<your-subdomain>.workers.dev/api";
+const API_BASE = "https://busrun.slcantec.workers.dev/api";
 
 const Admin = (() => {
   async function api(path, options = {}) {
