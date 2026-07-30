@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calendar — Sisara Coach Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="admin-body" data-page="calendar">
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <a href="/admin/dashboard.html" class="admin-brand"><span class="brand-mark"></span>Sisara Coach</a>
+    <nav class="admin-nav">
+      <a href="/admin/dashboard.html" data-nav="dashboard">Dashboard</a>
+      <a href="/admin/bookings.html" data-nav="bookings">Booking Requests</a>
+      <a href="/admin/calendar.html" data-nav="calendar">Calendar</a>
+      <a href="/admin/customers.html" data-nav="customers">Customers</a>
+      <a href="/admin/settings.html" data-nav="settings">Website Settings</a>
+      <a href="#" class="logout" data-logout>Logout</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar"><h1>Calendar</h1></div>
+
+    <div class="panel">
+      <div class="legend">
+        <span><span class="dot dot-available"></span>Available</span>
+        <span><span class="dot dot-pending"></span>Pending Request</span>
+        <span><span class="dot dot-confirmed"></span>Confirmed Booking</span>
+      </div>
+      <div class="toolbar" style="justify-content:space-between;">
+        <button class="btn btn-outline" id="cal-prev">← Prev</button>
+        <h2 id="cal-month-label" style="margin:0;"></h2>
+        <button class="btn btn-outline" id="cal-next">Next →</button>
+      </div>
+      <div class="cal-grid" id="cal-grid"></div>
+    </div>
+  </main>
+</div>
+<script src="/admin/admin.js"></script>
+</body>
+</html>

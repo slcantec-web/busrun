@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Sisara Coach Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="admin-body" data-page="dashboard">
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <a href="/admin/dashboard.html" class="admin-brand"><span class="brand-mark"></span>Sisara Coach</a>
+    <nav class="admin-nav">
+      <a href="/admin/dashboard.html" data-nav="dashboard">Dashboard</a>
+      <a href="/admin/bookings.html" data-nav="bookings">Booking Requests</a>
+      <a href="/admin/calendar.html" data-nav="calendar">Calendar</a>
+      <a href="/admin/customers.html" data-nav="customers">Customers</a>
+      <a href="/admin/settings.html" data-nav="settings">Website Settings</a>
+      <a href="#" class="logout" data-logout>Logout</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>Dashboard</h1>
+      <a href="/index.html" class="btn btn-outline" target="_blank">View site</a>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="label">Total Requests</div><div class="value" data-stat="total">–</div></div>
+      <div class="stat-card"><div class="label">Pending</div><div class="value" data-stat="pending">–</div></div>
+      <div class="stat-card"><div class="label">Confirmed</div><div class="value" data-stat="confirmed">–</div></div>
+      <div class="stat-card"><div class="label">Cancelled</div><div class="value" data-stat="cancelled">–</div></div>
+      <div class="stat-card"><div class="label">Completed</div><div class="value" data-stat="completed">–</div></div>
+    </div>
+
+    <div class="panel">
+      <h2>Recent booking requests</h2>
+      <table class="data-table" id="recent-bookings">
+        <thead><tr><th>Customer</th><th>Route</th><th>Date</th><th>Status</th></tr></thead>
+        <tbody><tr><td colspan="4" class="empty-state">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script src="/admin/admin.js"></script>
+</body>
+</html>

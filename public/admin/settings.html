@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Settings — Sisara Coach Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="admin-body" data-page="settings">
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <a href="/admin/dashboard.html" class="admin-brand"><span class="brand-mark"></span>Sisara Coach</a>
+    <nav class="admin-nav">
+      <a href="/admin/dashboard.html" data-nav="dashboard">Dashboard</a>
+      <a href="/admin/bookings.html" data-nav="bookings">Booking Requests</a>
+      <a href="/admin/calendar.html" data-nav="calendar">Calendar</a>
+      <a href="/admin/customers.html" data-nav="customers">Customers</a>
+      <a href="/admin/settings.html" data-nav="settings">Website Settings</a>
+      <a href="#" class="logout" data-logout>Logout</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar"><h1>Website Settings</h1></div>
+
+    <div class="panel" style="max-width:440px;">
+      <h2>Change admin password</h2>
+      <form id="password-form">
+        <div class="field" style="margin-bottom:14px;">
+          <label for="currentPassword">Current password</label>
+          <input type="password" id="currentPassword" name="currentPassword" required autocomplete="current-password">
+        </div>
+        <div class="field" style="margin-bottom:14px;">
+          <label for="newPassword">New password</label>
+          <input type="password" id="newPassword" name="newPassword" required minlength="8" autocomplete="new-password">
+        </div>
+        <p id="settings-status" style="font-size:0.85rem; min-height:1.2em;"></p>
+        <button type="submit" class="btn btn-primary">Update password</button>
+      </form>
+    </div>
+
+    <div class="panel" style="max-width:440px;">
+      <h2>Business contact details</h2>
+      <p style="color:rgba(22,33,29,0.6); font-size:0.9rem;">
+        Phone, WhatsApp number and email shown on the public site are currently
+        edited directly in the site files (<code>contact.html</code>, <code>booking.js</code>).
+        A settings-editor UI is planned for a future phase.
+      </p>
+    </div>
+  </main>
+</div>
+<script src="/admin/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking Requests — Sisara Coach Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/admin/admin.css">
+</head>
+<body class="admin-body" data-page="bookings">
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <a href="/admin/dashboard.html" class="admin-brand"><span class="brand-mark"></span>Sisara Coach</a>
+    <nav class="admin-nav">
+      <a href="/admin/dashboard.html" data-nav="dashboard">Dashboard</a>
+      <a href="/admin/bookings.html" data-nav="bookings">Booking Requests</a>
+      <a href="/admin/calendar.html" data-nav="calendar">Calendar</a>
+      <a href="/admin/customers.html" data-nav="customers">Customers</a>
+      <a href="/admin/settings.html" data-nav="settings">Website Settings</a>
+      <a href="#" class="logout" data-logout>Logout</a>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar"><h1>Booking Requests</h1></div>
+
+    <div class="panel">
+      <div class="toolbar">
+        <input type="search" id="booking-search" placeholder="Search name, mobile, route…" style="flex:1; min-width:200px;">
+        <select id="booking-status-filter">
+          <option value="">All statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="Confirmed">Confirmed</option>
+          <option value="Cancelled">Cancelled</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+      <table class="data-table" id="bookings-table">
+        <thead><tr><th>Customer</th><th>Route</th><th>Date / Time</th><th>Pax</th><th>Status</th><th>Actions</th></tr></thead>
+        <tbody><tr><td colspan="6" class="empty-state">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="booking-modal">
+  <div class="modal" id="booking-modal-body"></div>
+</div>
+
+<script src="/admin/admin.js"></script>
+</body>
+</html>
