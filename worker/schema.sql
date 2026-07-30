@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS buses (
   bus_name            TEXT NOT NULL,
   registration_number TEXT NOT NULL,
   seat_capacity       INTEGER NOT NULL,
-  status              TEXT NOT NULL DEFAULT 'Active', -- Active | Maintenance | Retired
+  status              TEXT NOT NULL DEFAULT 'Active',
   created_at          TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
 
