@@ -1,4 +1,4 @@
-name = "sisara-coach-api"
+name = "busrun-api"
 main = "worker/src/index.js"
 compatibility_date = "2026-07-01"
 
@@ -10,8 +10,8 @@ compatibility_date = "2026-07-01"
 
 [[d1_databases]]
 binding = "DB"
-database_name = "sisara-coach-db"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+database_name = "busrun-db"
+database_id = "c6b23041-6811-474b-a24e-3461b9139793"
 
 [vars]
 ALLOWED_ORIGIN = "https://sisaracoach.lk"
