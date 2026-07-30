@@ -2,7 +2,15 @@
 // WhatsApp hand-off described in the spec (section 5 & 6).
 (function () {
   const WHATSAPP_NUMBER = "94770000000"; // TODO: replace with the live business number (no leading +/0)
-  const API_ENDPOINT = "/api/bookings";
+
+  // TODO: no custom domain yet, so Pages (busrun.pages.dev) and the Worker
+  // (busrun-api.<your-subdomain>.workers.dev) are different origins —
+  // this must be the full Worker URL, not a relative "/api/bookings" path.
+  // Find <your-subdomain> in the output of `wrangler deploy`, or on the
+  // Cloudflare dashboard under Workers & Pages. Once you attach a real
+  // domain and route /api/* to the Worker on that same domain, switch
+  // this back to the relative path "/api/bookings".
+  const API_ENDPOINT = "https://busrun-api.<your-subdomain>.workers.dev/api/bookings";
 
   const form = document.getElementById("booking-form");
   if (!form) return;

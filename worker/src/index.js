@@ -1,5 +1,5 @@
 /**
- * Sisara Coach — Worker API
+ * Sisara Coach / BusRun — Worker API
  * Routes (all under /api):
  *   POST   /api/bookings                (public)  create booking request
  *   GET    /api/bookings                (auth)    list/search/filter bookings
@@ -15,7 +15,7 @@
  *
  * Bindings expected in wrangler.toml:
  *   DB            -> D1 database
- *   ALLOWED_ORIGIN -> the site origin, e.g. https://sisaracoach.lk (for CORS)
+ *   ALLOWED_ORIGIN -> the site origin, e.g. https://busrun.pages.dev (for CORS)
  */
 
 const SESSION_COOKIE = "sisara_session";
@@ -387,7 +387,13 @@ function withCors(response, origin) {
 }
 
 function buildSessionCookie(value, maxAgeSeconds) {
-  return `${SESSION_COOKIE}=${value}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${maxAgeSeconds}`;
+  // TODO: no custom domain yet, so Pages and the Worker are cross-site —
+  // SameSite=None is required for the cookie to be sent on cross-origin
+  // fetch() calls (SameSite=Lax only allows top-level navigations).
+  // Once you attach a real domain and route /api/* on the same domain as
+  // the Pages site, switch this back to SameSite=Lax (tighter, preferable
+  // once same-site).
+  return `${SESSION_COOKIE}=${value}; Path=/; HttpOnly; Secure; SameSite=None; Max-Age=${maxAgeSeconds}`;
 }
 
 function getCookie(request, name) {

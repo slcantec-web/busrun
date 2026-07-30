@@ -1,5 +1,13 @@
--- Sisara Coach — D1 schema
--- Apply with: wrangler d1 execute sisara-coach-db --file=./worker/schema.sql
+-- Sisara Coach / BusRun — D1 schema
+-- Safe to paste directly into the Cloudflare D1 console, or apply with:
+--   wrangler d1 execute busrun-db --file=./worker/schema.sql
+--
+-- NOTE: the original syntax error came from putting a `-- comment` on the
+-- same line as SQL when run via `--command "...one line..."`. Everything
+-- after `--` on a line is ignored by SQLite, which silently swallowed the
+-- rest of the statement (closing paren + semicolon) and caused
+-- "incomplete input: SQLITE_ERROR". Comments below are on their own lines
+-- so this is safe however you run it.
 
 PRAGMA foreign_keys = ON;
 
@@ -8,7 +16,8 @@ CREATE TABLE IF NOT EXISTS buses (
   bus_name            TEXT NOT NULL,
   registration_number TEXT NOT NULL,
   seat_capacity       INTEGER NOT NULL,
-  status              TEXT NOT NULL DEFAULT 'Active', -- Active | Maintenance | Retired
+  -- status: Active | Maintenance | Retired
+  status              TEXT NOT NULL DEFAULT 'Active',
   created_at          TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
 
@@ -25,21 +34,23 @@ CREATE TABLE IF NOT EXISTS bookings (
   id               INTEGER PRIMARY KEY AUTOINCREMENT,
   bus_id           INTEGER REFERENCES buses(id),
   customer_id      INTEGER NOT NULL REFERENCES customers(id),
-  name             TEXT NOT NULL,   -- denormalised snapshot at time of request
+  -- name/mobile/email below are a denormalised snapshot at time of request
+  name             TEXT NOT NULL,
   mobile           TEXT NOT NULL,
   email            TEXT,
   pickup           TEXT NOT NULL,
   destination      TEXT NOT NULL,
-  journey_date     TEXT NOT NULL,  -- ISO date
-  pickup_time      TEXT NOT NULL,  -- HH:MM
-  return_trip      INTEGER NOT NULL DEFAULT 0, -- boolean 0/1
+  journey_date     TEXT NOT NULL,
+  pickup_time      TEXT NOT NULL,
+  return_trip      INTEGER NOT NULL DEFAULT 0,
   return_date      TEXT,
   passenger_count  INTEGER NOT NULL,
-  notes            TEXT,           -- customer-provided
-  internal_notes   TEXT,           -- admin-only
-  status            TEXT NOT NULL DEFAULT 'Pending', -- Pending | Confirmed | Cancelled | Completed
-  created_at        TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-  updated_at        TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP)
+  notes            TEXT,
+  internal_notes   TEXT,
+  -- status: Pending | Confirmed | Cancelled | Completed
+  status           TEXT NOT NULL DEFAULT 'Pending',
+  created_at       TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+  updated_at       TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
 
 CREATE INDEX IF NOT EXISTS idx_bookings_date ON bookings (journey_date);
@@ -49,8 +60,8 @@ CREATE INDEX IF NOT EXISTS idx_bookings_customer ON bookings (customer_id);
 CREATE TABLE IF NOT EXISTS admin_users (
   id              INTEGER PRIMARY KEY AUTOINCREMENT,
   username        TEXT NOT NULL UNIQUE,
-  password_hash   TEXT NOT NULL, -- base64 PBKDF2 hash
-  password_salt   TEXT NOT NULL, -- base64 salt
+  password_hash   TEXT NOT NULL,
+  password_salt   TEXT NOT NULL,
   created_at      TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP)
 );
 
@@ -66,5 +77,5 @@ INSERT INTO buses (bus_name, registration_number, seat_capacity, status)
 SELECT 'Sisara Coach', 'TBD-0000', 33, 'Active'
 WHERE NOT EXISTS (SELECT 1 FROM buses);
 
--- NOTE: no default admin user is seeded here on purpose (never ship a known
--- password). Create one with worker/scripts/create-admin.js — see README.
+-- NOTE: no default admin user is seeded here on purpose (never ship a
+-- known password). Create one with worker/scripts/create-admin.js.

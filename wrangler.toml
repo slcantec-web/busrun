@@ -2,10 +2,14 @@ name = "busrun-api"
 main = "worker/src/index.js"
 compatibility_date = "2026-07-01"
 
-# Bind this Worker to yourdomain.com/api/* alongside Cloudflare Pages on
-# yourdomain.com/* (Pages serves /public, this Worker serves /api).
+# No custom domain yet, so this Worker is served from its free
+# *.workers.dev URL and the Pages site from its free *.pages.dev URL —
+# two different origins. Once you have a real domain, put both under it
+# (e.g. yourdomain.com for Pages, yourdomain.com/api/* routed here via the
+# block below), then you can go back to relative /api/... calls in the
+# frontend and tighten the cookie back to SameSite=Lax.
 # routes = [
-#   { pattern = "sisaracoach.lk/api/*", zone_name = "sisaracoach.lk" }
+#   { pattern = "yourdomain.com/api/*", zone_name = "yourdomain.com" }
 # ]
 
 [[d1_databases]]
@@ -14,4 +18,5 @@ database_name = "busrun-db"
 database_id = "c6b23041-6811-474b-a24e-3461b9139793"
 
 [vars]
+# TODO: update if your Pages project name/URL changes.
 ALLOWED_ORIGIN = "https://busrun.pages.dev"

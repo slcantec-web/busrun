@@ -3,9 +3,17 @@
 // Session auth is a Worker-set httpOnly cookie — every call below sends
 // credentials so the Worker can read it.
 
+// TODO: no custom domain yet, so Pages (busrun.pages.dev) and the Worker
+// (busrun-api.<your-subdomain>.workers.dev) are different origins — API_BASE
+// must be the full Worker URL, not a relative "/api" path. Find
+// <your-subdomain> in the output of `wrangler deploy`, or on the Cloudflare
+// dashboard under Workers & Pages. Once you attach a real domain and route
+// /api/* to the Worker on that same domain, switch this back to "/api".
+const API_BASE = "https://busrun-api.<your-subdomain>.workers.dev/api";
+
 const Admin = (() => {
   async function api(path, options = {}) {
-    const res = await fetch(`/api${path}`, {
+    const res = await fetch(`${API_BASE}${path}`, {
       credentials: "include",
       headers: { "Content-Type": "application/json", ...(options.headers || {}) },
       ...options,
