@@ -15,6 +15,19 @@ body.admin-body {
   .admin-sidebar { position: sticky; top: 0; z-index: 30; }
 }
 
+/* Grid items default to min-width:auto, which means they refuse to
+   shrink below their widest piece of content (the calendar grid and the
+   data tables are both wider than a phone screen). Without this, that
+   content forces the whole .admin-main column — and the whole page —
+   wider than the viewport, so mobile browsers can't fit it without
+   zooming out. min-width:0 lets the column actually shrink to the
+   viewport width, so the overflow-x:auto already set on .table-wrap and
+   .cal-grid can do its job locally instead. */
+.admin-sidebar,
+.admin-main {
+  min-width: 0;
+}
+
 .admin-sidebar {
   background: var(--teal-3);
   color: var(--cream);
@@ -88,6 +101,7 @@ body.admin-body {
 .stat-card {
   background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
   padding: 18px 20px;
+  min-width: 0;
 }
 .stat-card .label { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(22,33,29,0.55); }
 .stat-card .value { font-family: var(--font-display); font-size: 2rem; margin-top: 6px; }
@@ -95,6 +109,7 @@ body.admin-body {
 .panel {
   background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
   padding: 24px; margin-bottom: 24px;
+  min-width: 0;
 }
 .panel h2 { font-size: 1.1rem; margin-bottom: 16px; }
 
@@ -114,6 +129,7 @@ body.admin-body {
   -webkit-overflow-scrolling: touch;
   margin: 0 -4px;
   padding: 0 4px;
+  max-width: 100%;
 }
 
 table.data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 640px; }
@@ -159,11 +175,14 @@ table.data-table tr:hover td { background: rgba(15,61,62,0.03); }
 
 @media (max-width: 640px) {
   /* 7 equal columns get too narrow on phones; let the grid itself scroll
-     horizontally rather than crushing each day into an unreadable sliver. */
+     horizontally rather than crushing each day into an unreadable sliver.
+     max-width:100% + the min-width:0 fixes above keep this scroll local
+     to the calendar instead of widening the whole page. */
   .cal-grid {
     grid-template-columns: repeat(7, 84px);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    max-width: 100%;
   }
 }
 
