@@ -23,12 +23,31 @@ body.admin-body {
   flex-direction: column;
   gap: 6px;
 }
+
+/* Brand + hamburger sit on one row so the nav list can collapse under it
+   on mobile, instead of always pushing page content down the screen. */
+.admin-sidebar-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 22px;
+}
 .admin-brand {
   display: flex; align-items: center; gap: 10px;
   font-family: var(--font-display); font-size: 1.15rem;
-  padding: 6px 10px 22px;
+  padding: 6px 10px;
   text-decoration: none; color: var(--cream);
 }
+
+.admin-nav-toggle {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  flex-direction: column; gap: 5px; padding: 8px;
+  flex: none;
+}
+.admin-nav-toggle span { width: 20px; height: 2px; background: var(--cream); display: block; }
+
 .admin-nav { display: flex; flex-direction: column; gap: 2px; }
 .admin-nav a {
   display: flex; align-items: center; gap: 10px;
@@ -39,6 +58,15 @@ body.admin-body {
 .admin-nav a:hover { background: rgba(250,246,239,0.08); color: var(--cream); }
 .admin-nav a.active { background: var(--teal); color: var(--cream); }
 .admin-nav .logout { margin-top: auto; }
+
+@media (max-width: 860px) {
+  .admin-nav-toggle { display: flex; }
+  .admin-nav {
+    display: none;
+  }
+  .admin-nav.open { display: flex; }
+  .admin-nav .logout { margin-top: 6px; }
+}
 
 .admin-main { padding: 32px 36px 60px; }
 @media (max-width: 640px) { .admin-main { padding: 24px 18px 48px; } }
@@ -56,6 +84,7 @@ body.admin-body {
   margin-bottom: 32px;
 }
 @media (max-width: 1000px) { .stat-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .stat-grid { grid-template-columns: 1fr; } }
 .stat-card {
   background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
   padding: 18px 20px;
@@ -74,11 +103,24 @@ body.admin-body {
   font-family: var(--font-body); padding: 9px 12px; border: 1px solid var(--line-strong);
   border-radius: var(--radius); font-size: 0.9rem;
 }
+@media (max-width: 480px) {
+  .toolbar input, .toolbar select { flex: 1 1 100%; }
+}
 
-table.data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+/* Tables get their own horizontally-scrolling strip instead of squeezing
+   columns unreadably or forcing the whole page to scroll sideways. */
+.table-wrap {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -4px;
+  padding: 0 4px;
+}
+
+table.data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 640px; }
 table.data-table th {
   text-align: left; font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase;
   letter-spacing: 0.06em; color: rgba(22,33,29,0.55); padding: 10px 12px; border-bottom: 1px solid var(--line-strong);
+  white-space: nowrap;
 }
 table.data-table td { padding: 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.data-table tr:hover td { background: rgba(15,61,62,0.03); }
@@ -86,6 +128,7 @@ table.data-table tr:hover td { background: rgba(15,61,62,0.03); }
 .row-actions button {
   font-family: var(--font-body); font-size: 0.78rem; padding: 5px 10px;
   border-radius: var(--radius); border: 1px solid var(--line-strong); background: #fff; cursor: pointer;
+  white-space: nowrap;
 }
 .row-actions button:hover { background: var(--cream-2); }
 .row-actions button.danger { color: var(--signal); border-color: var(--signal); }
@@ -113,6 +156,16 @@ table.data-table tr:hover td { background: rgba(15,61,62,0.03); }
 }
 .cal-cell .badge.pending { background: rgba(232,163,61,0.18); color: var(--gold-deep); }
 .cal-cell .badge.confirmed { background: rgba(193,68,59,0.14); color: var(--signal); }
+
+@media (max-width: 640px) {
+  /* 7 equal columns get too narrow on phones; let the grid itself scroll
+     horizontally rather than crushing each day into an unreadable sliver. */
+  .cal-grid {
+    grid-template-columns: repeat(7, 84px);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
 
 /* Login */
 .login-shell {

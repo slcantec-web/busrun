@@ -56,6 +56,28 @@ const Admin = (() => {
     );
   }
 
+  // Collapses the sidebar nav behind a hamburger on narrow screens (see
+  // admin.css @media max-width:860px) so the nav list doesn't push page
+  // content down the screen on phones. No-op on pages without the toggle
+  // (e.g. login.html has no sidebar).
+  function bindAdminNavToggle() {
+    const toggle = document.querySelector(".admin-nav-toggle");
+    const nav = document.querySelector(".admin-nav");
+    if (!toggle || !nav) return;
+    toggle.addEventListener("click", () => {
+      const isOpen = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(isOpen));
+    });
+    // Close the panel once a nav link is tapped, same pattern as the
+    // public site's mobile menu.
+    nav.querySelectorAll("a[data-nav]").forEach((a) =>
+      a.addEventListener("click", () => {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      })
+    );
+  }
+
   function statusPillHtml(status) {
     const key = (status || "pending").toLowerCase();
     return `<span class="status-pill status-${key}">${status}</span>`;
@@ -287,6 +309,7 @@ const Admin = (() => {
     const page = document.body.dataset.page;
     bindLogout();
     markActiveNav();
+    bindAdminNavToggle();
 
     if (page === "login") return initLogin();
 

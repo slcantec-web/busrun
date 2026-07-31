@@ -47,6 +47,7 @@ body {
   background: var(--cream);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden; /* belt-and-braces: nothing should be able to force horizontal scroll on the whole page */
 }
 
 h1, h2, h3, h4 {
@@ -57,8 +58,8 @@ h1, h2, h3, h4 {
   color: var(--teal-3);
 }
 
-h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); font-weight: 500; }
-h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+h1 { font-size: clamp(2rem, 5vw, 4.2rem); font-weight: 500; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.4rem); }
 h3 { font-size: 1.25rem; }
 
 p { margin: 0 0 1em; }
@@ -107,6 +108,8 @@ img { max-width: 100%; display: block; }
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  white-space: normal;
+  text-align: center;
 }
 .btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
@@ -138,6 +141,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: space-between;
   padding: 16px 0;
+  gap: 12px;
 }
 
 .brand {
@@ -149,6 +153,7 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: none;
 }
 .brand-mark {
   width: 30px; height: 30px;
@@ -165,6 +170,19 @@ img { max-width: 100%; display: block; }
   background: var(--gold);
 }
 
+/* .nav-collapse wraps BOTH the page links and the lang-switch/Book Now
+   button. On desktop it's just a flex row sitting to the right of the
+   brand. On mobile (see media query below) the whole thing becomes the
+   single dropdown panel the hamburger opens — nothing is left stranded
+   outside the toggle. */
+.nav-collapse {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: auto;
+  min-width: 0;
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -179,6 +197,7 @@ img { max-width: 100%; display: block; }
   color: var(--ink);
   position: relative;
   padding-bottom: 4px;
+  white-space: nowrap;
 }
 .nav-links a.active,
 .nav-links a:hover { color: var(--teal); }
@@ -190,7 +209,7 @@ img { max-width: 100%; display: block; }
   background: var(--gold);
 }
 
-.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-right { display: flex; align-items: center; gap: 16px; flex: none; }
 
 .lang-switch {
   display: flex;
@@ -199,6 +218,7 @@ img { max-width: 100%; display: block; }
   overflow: hidden;
   font-family: var(--font-mono);
   font-size: 0.78rem;
+  flex: none;
 }
 .lang-switch button {
   background: transparent;
@@ -216,23 +236,47 @@ img { max-width: 100%; display: block; }
   display: none;
   background: none; border: none; cursor: pointer;
   flex-direction: column; gap: 5px; padding: 8px;
+  flex: none;
+  z-index: 41;
 }
 .nav-toggle span { width: 22px; height: 2px; background: var(--ink); }
 
 @media (max-width: 860px) {
   .nav-toggle { display: flex; }
-  .nav-links {
-    position: absolute; top: 100%; left: 0; right: 0;
+
+  /* Everything (links + lang switch + Book Now) lives in one dropdown now,
+     so there's nothing left in the top bar to overflow or clip. */
+  .nav-collapse {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
     background: var(--cream);
     flex-direction: column;
-    align-items: flex-start;
-    padding: 20px 24px;
+    align-items: stretch;
+    gap: 20px;
+    padding: 20px 24px 28px;
     border-bottom: 1px solid var(--line);
-    display: none;
-    gap: 18px;
+    margin-left: 0;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
   }
-  .nav-links.open { display: flex; }
-  .nav-right { gap: 10px; }
+  .nav-collapse.open { display: flex; }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .nav-right {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    width: 100%;
+  }
+  .nav-right .lang-switch { align-self: flex-start; }
+  .nav-right .btn { width: 100%; }
 }
 
 /* ---------- Route line (signature motif) ---------- */
@@ -282,10 +326,13 @@ img { max-width: 100%; display: block; }
   align-items: center;
 }
 @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .hero { padding: 56px 0 48px; } }
 
 .hero h1 { color: var(--cream); }
 .hero .lede { font-size: 1.15rem; max-width: 46ch; color: rgba(250,246,239,0.86); }
 .hero-cta { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+.hero-cta .btn { flex: 1 1 auto; }
+@media (max-width: 480px) { .hero-cta { flex-direction: column; } .hero-cta .btn { width: 100%; } }
 
 .hero-route {
   margin-top: 40px;
@@ -306,6 +353,7 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Sections ---------- */
 .section { padding: 84px 0; }
+@media (max-width: 640px) { .section { padding: 56px 0; } }
 .section-alt { background: var(--cream-2); }
 .section-head { max-width: 640px; margin-bottom: 48px; }
 
@@ -318,6 +366,7 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--line);
   border-radius: var(--radius);
   padding: 28px;
+  min-width: 0;
 }
 .card-teal { background: var(--teal); color: var(--cream); border-color: transparent; }
 .card-teal h3 { color: var(--cream); }
@@ -341,11 +390,12 @@ img { max-width: 100%; display: block; }
 }
 .gallery-grid img { border-radius: var(--radius); aspect-ratio: 4/3; object-fit: cover; width: 100%; }
 @media (max-width: 700px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px) { .gallery-grid { grid-template-columns: 1fr; } }
 
 /* ---------- Forms ---------- */
 .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 @media (max-width: 700px) { .form-grid { grid-template-columns: 1fr; } }
-.field { display: flex; flex-direction: column; gap: 6px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
 .field.full { grid-column: 1 / -1; }
 .field label { font-size: 0.85rem; font-weight: 600; color: var(--teal-3); }
 .field .hint { font-size: 0.78rem; color: rgba(22,33,29,0.6); }
@@ -357,6 +407,7 @@ img { max-width: 100%; display: block; }
   border-radius: var(--radius);
   background: #fff;
   color: var(--ink);
+  width: 100%;
 }
 .field input:focus, .field select:focus, .field textarea:focus {
   outline: 2px solid var(--teal);
@@ -364,7 +415,7 @@ img { max-width: 100%; display: block; }
   border-color: var(--teal);
 }
 .field textarea { resize: vertical; min-height: 90px; }
-.radio-row { display: flex; gap: 18px; }
+.radio-row { display: flex; gap: 18px; flex-wrap: wrap; }
 .radio-row label { display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 0.92rem; }
 
 .error-text { color: var(--signal); font-size: 0.8rem; min-height: 1.1em; }
@@ -394,6 +445,7 @@ img { max-width: 100%; display: block; }
   border-bottom: 1px solid rgba(250,246,239,0.14);
 }
 @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .footer-grid { grid-template-columns: 1fr; } }
 .site-footer h4 { color: var(--cream); font-size: 0.95rem; font-family: var(--font-body); font-weight: 600; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .site-footer a { text-decoration: none; color: inherit; }
