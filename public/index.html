@@ -36,8 +36,13 @@
 </header>
 
 <section class="hero">
+  <!-- Photos are injected here by /js/hero-slideshow.js, using the list in
+       /js/hero-images.js — edit that file to change which photos appear. -->
+  <div class="hero-slideshow" id="hero-slideshow" aria-hidden="true"></div>
+  <div class="hero-overlay" aria-hidden="true"></div>
+
   <div class="container hero-grid">
-    <div>
+    <div class="hero-copy">
       <span class="eyebrow" data-i18n="home.eyebrow">Negombo, Western Province</span>
       <h1 data-i18n="home.title">One bus. One driver. Your whole journey planned around it.</h1>
       <p class="lede" data-i18n="home.lede">Sisara Coach hires out a single, meticulously maintained coach for weddings, pilgrimages, school trips and tours across Sri Lanka — so every booking gets our full attention.</p>
@@ -50,30 +55,27 @@
           <span data-i18n="home.route_pickup">Pickup</span>
           <span data-i18n="home.route_dropoff">Destination</span>
         </div>
-        <div class="route-line"><span class="stop"></span><span class="track"></span><span class="stop"></span></div>
+        <div class="route-line animated"><span class="stop"></span><span class="track"></span><span class="stop"></span></div>
       </div>
-    </div>
-    <div class="hero-media">
-      <img src="/images/hero-bus.jpg" alt="Sisara Coach parked on a coastal road" onerror="this.src='https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=900&q=80'">
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow" data-i18n="home.intro_eyebrow">Why Sisara</span>
       <h2 data-i18n="home.intro_title">Built around one bus, run without compromise</h2>
       <p data-i18n="home.intro_body">Because we operate a single coach, every trip is planned in detail — no double bookings, no substitute vehicles, no surprises on the day.</p>
     </div>
     <div class="grid-3">
-      <div class="card">
+      <div class="card reveal">
         <div class="feature"><span class="dot"></span><div><h3 data-i18n="home.f1_title">Direct confirmation</h3><p data-i18n="home.f1_body">You deal with the owner directly, not a call centre. Every request gets a personal reply.</p></div></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="feature"><span class="dot"></span><div><h3 data-i18n="home.f2_title">Real availability</h3><p data-i18n="home.f2_body">Our calendar reflects the one bus we run, so the date you request is the date you get.</p></div></div>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <div class="feature"><span class="dot"></span><div><h3 data-i18n="home.f3_title">Full-service trips</h3><p data-i18n="home.f3_body">Airport transfers, weddings, school trips, pilgrimages, company outings and multi-day tours.</p></div></div>
       </div>
     </div>
@@ -82,10 +84,10 @@
 
 <section class="section section-alt">
   <div class="container grid-2" style="align-items:center;">
-    <div>
+    <div class="reveal">
       <img src="/images/featured-bus.jpg" alt="Interior of the coach" style="border-radius:4px;" onerror="this.src='https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=900&q=80'">
     </div>
-    <div>
+    <div class="reveal">
       <span class="eyebrow" data-i18n="home.featured_eyebrow">The Fleet</span>
       <h2 data-i18n="home.featured_title">A coach built for long Sri Lankan roads</h2>
       <p data-i18n="home.featured_body">Comfortable seating, full air conditioning and a driver who knows the coastal and hill routes well. See full specifications on the Bus Details page.</p>
@@ -96,23 +98,23 @@
 
 <section class="section">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow" data-i18n="home.services_eyebrow">Services</span>
       <h2 data-i18n="home.services_title">Where we take you</h2>
     </div>
     <div class="grid-3">
-      <div class="card"><h3 data-i18n="services.s1">Airport Transfers</h3></div>
-      <div class="card"><h3 data-i18n="services.s2">Weddings</h3></div>
-      <div class="card"><h3 data-i18n="services.s3">School Trips</h3></div>
-      <div class="card"><h3 data-i18n="services.s4">Company Transport</h3></div>
-      <div class="card"><h3 data-i18n="services.s5">Pilgrimages</h3></div>
-      <div class="card"><h3 data-i18n="services.s6">Tours</h3></div>
+      <div class="card reveal"><h3 data-i18n="services.s1">Airport Transfers</h3></div>
+      <div class="card reveal"><h3 data-i18n="services.s2">Weddings</h3></div>
+      <div class="card reveal"><h3 data-i18n="services.s3">School Trips</h3></div>
+      <div class="card reveal"><h3 data-i18n="services.s4">Company Transport</h3></div>
+      <div class="card reveal"><h3 data-i18n="services.s5">Pilgrimages</h3></div>
+      <div class="card reveal"><h3 data-i18n="services.s6">Tours</h3></div>
     </div>
   </div>
 </section>
 
 <section class="section section-alt">
-  <div class="container card card-teal text-center" style="padding:56px;">
+  <div class="container card card-teal text-center reveal" style="padding:56px;">
     <span class="eyebrow" style="color:var(--gold);" data-i18n="home.contact_eyebrow">Get in touch</span>
     <h2 data-i18n="home.contact_title">Ready to plan your trip?</h2>
     <p data-i18n="home.contact_body">Send a booking request and we'll confirm availability by phone or WhatsApp, usually within a few hours.</p>
@@ -160,6 +162,8 @@
 </footer>
 
 <script src="/js/i18n.js"></script>
+<script src="/js/hero-images.js"></script>
+<script src="/js/hero-slideshow.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>
