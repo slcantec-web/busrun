@@ -39,11 +39,9 @@
     <h1 data-i18n="bus.title">Specifications</h1>
 
     <h3 style="margin-top:36px;" data-i18n="bus.photos_title">Photos</h3>
-    <div class="gallery-grid">
-      <img src="/images/bus-1.jpg" alt="Front view of the coach" onerror="this.src='https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=700&q=80'">
-      <img src="/images/bus-2.jpg" alt="Interior seating" onerror="this.src='https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=700&q=80'">
-      <img src="/images/bus-3.jpg" alt="Luggage hold" onerror="this.src='https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=700&q=80'">
-    </div>
+    <!-- Populated by /js/site-images-render.js from SITE_IMAGES.busGallery
+         in /js/site-images.js — edit that file to change these photos. -->
+    <div class="gallery-grid" data-site-image-list="busGallery"></div>
 
     <div class="grid-2" style="margin-top:48px;">
       <div class="card reveal">
@@ -85,6 +83,8 @@
 </footer>
 
 <script src="/js/i18n.js"></script>
+<script src="/js/site-images.js"></script>
+<script src="/js/site-images-render.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>

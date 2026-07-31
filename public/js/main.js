@@ -1,6 +1,6 @@
 // Shared behaviour across all public pages: mobile nav toggle + scroll
-// reveal animations. Hero slideshow logic lives in its own files
-// (hero-images.js / hero-slideshow.js) since it's homepage-only.
+// reveal animations. Photo rendering lives in its own files
+// (site-images.js / site-images-render.js / hero-slideshow.js).
 document.addEventListener("DOMContentLoaded", () => {
   initNavToggle();
   initRevealAnimations();

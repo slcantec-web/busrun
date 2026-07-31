@@ -312,8 +312,9 @@ img { max-width: 100%; display: block; }
 @media (max-width: 640px) { .hero { padding: 84px 0 64px; } }
 
 /* Layer 0: the photos themselves. One <div class="hero-slide"> per photo
-   is injected here by /js/hero-slideshow.js — edit /js/hero-images.js to
-   change which photos appear, nothing here needs to change. */
+   is injected here by /js/hero-slideshow.js — edit the "hero" list in
+   /js/site-images.js to change which photos appear, nothing here needs
+   to change. */
 .hero-slideshow {
   position: absolute;
   inset: 0;

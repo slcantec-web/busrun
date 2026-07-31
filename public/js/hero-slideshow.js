@@ -1,14 +1,16 @@
 // Homepage hero slideshow: crossfades between the photos listed in
-// /js/hero-images.js, with a slow "Ken Burns" zoom on the active slide.
-// Every image is preloaded first, so a missing/broken file is skipped
-// silently instead of flashing a blank or broken slide.
+// SITE_IMAGES.hero (see /js/site-images.js), with a slow "Ken Burns"
+// zoom on the active slide. Every image is preloaded first, so a
+// missing/broken file is skipped silently instead of flashing a blank
+// or broken slide.
 (function () {
   const mount = document.getElementById("hero-slideshow");
   if (!mount) return; // this script only does anything on the homepage
 
   const INTERVAL_MS = 6500;
-  const primary = window.HERO_IMAGES || [];
-  const fallback = window.HERO_IMAGES_FALLBACK || [];
+  const heroConfig = (window.SITE_IMAGES && window.SITE_IMAGES.hero) || {};
+  const primary = heroConfig.images || [];
+  const fallback = heroConfig.fallback || [];
 
   function preload(src) {
     return new Promise((resolve) => {

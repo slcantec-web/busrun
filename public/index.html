@@ -36,8 +36,8 @@
 </header>
 
 <section class="hero">
-  <!-- Photos are injected here by /js/hero-slideshow.js, using the list in
-       /js/hero-images.js — edit that file to change which photos appear. -->
+  <!-- Photos are injected here by /js/hero-slideshow.js, using the "hero"
+       list in /js/site-images.js — edit that file to change which photos appear. -->
   <div class="hero-slideshow" id="hero-slideshow" aria-hidden="true"></div>
   <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -85,7 +85,7 @@
 <section class="section section-alt">
   <div class="container grid-2" style="align-items:center;">
     <div class="reveal">
-      <img src="/images/featured-bus.jpg" alt="Interior of the coach" style="border-radius:4px;" onerror="this.src='https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=900&q=80'">
+      <img data-site-image="featuredBus" alt="Interior of the coach" style="border-radius:4px;">
     </div>
     <div class="reveal">
       <span class="eyebrow" data-i18n="home.featured_eyebrow">The Fleet</span>
@@ -162,8 +162,9 @@
 </footer>
 
 <script src="/js/i18n.js"></script>
-<script src="/js/hero-images.js"></script>
+<script src="/js/site-images.js"></script>
 <script src="/js/hero-slideshow.js"></script>
+<script src="/js/site-images-render.js"></script>
 <script src="/js/main.js"></script>
 </body>
 </html>
