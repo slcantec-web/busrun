@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About — Sisara Coach</title>
-<meta name="description" content="The story, mission and experience behind Sisara Coach, a single-bus hire operator based in Negombo, Sri Lanka.">
+<meta name="description" content="The story, mission and promise behind Sisara Coach, a single-bus hire operator based in Negombo, Sri Lanka.">
 <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -31,24 +31,68 @@
   </nav>
 </header>
 
-<section class="section" style="padding-top:56px;">
-  <div class="container">
+<!-- Hero: short headline + one supporting sentence, not a wall of text -->
+<section class="section" style="padding-top:56px; padding-bottom:32px;">
+  <div class="container" style="max-width:720px;">
     <span class="eyebrow" data-i18n="about.eyebrow">About Us</span>
-    <h1 data-i18n="about.title">A family business, one coach at a time</h1>
+    <h1 style="max-width:18ch; line-height:1.15;" data-i18n="about.hero_title">A bus service you can trust for your journey</h1>
+    <p class="lede" style="max-width:62ch; line-height:1.35;" data-i18n="about.hero_body">Sisara Coach offers a well-maintained, air-conditioned coach for weddings, pilgrimages, school trips, corporate outings and tours across Sri Lanka. Every trip is planned with care, safety and full attention.</p>
+  </div>
+</section>
 
-    <div class="grid-3" style="margin-top:40px;">
-      <div class="card">
-        <h3 data-i18n="about.history_title">Our History</h3>
-        <p data-i18n="about.history_body">Sisara Coach started with a single vehicle and a simple idea: give every hire our complete attention instead of spreading a fleet thin. That approach hasn't changed.</p>
+<!-- Short labelled sections instead of long paragraph cards -->
+<section class="section section-alt" style="padding-top:48px; padding-bottom:48px;">
+  <div class="container" style="max-width:640px;">
+    <h2 data-i18n="about.intro_title">About Us</h2>
+    <p style="max-width:65ch; line-height:1.35;" data-i18n="about.intro_body">Sisara Coach is a trusted bus hire service for weddings, pilgrimages, school trips, corporate outings and tours across Sri Lanka. We organise every journey safely, comfortably and on schedule.</p>
+
+    <h2 style="margin-top:36px;" data-i18n="about.mission_title">Our Mission</h2>
+    <p style="max-width:65ch; line-height:1.35;" data-i18n="about.mission_body">To give every customer a trustworthy, safe and comfortable travel experience.</p>
+
+    <h2 style="margin-top:36px;" data-i18n="about.promise_title">Our Promise</h2>
+    <p style="max-width:65ch; line-height:1.35;" data-i18n="about.promise_body">Because we run a single bus, we can give every trip our full attention. Every journey is planned in advance so there are no last-minute vehicle changes or unexpected problems.</p>
+  </div>
+</section>
+
+<!-- Feature cards: quick scan instead of paragraphs -->
+<section class="section" style="padding-top:56px; padding-bottom:56px;">
+  <div class="container">
+    <div class="grid-3">
+      <div class="card text-center">
+        <div style="font-size:2rem; margin-bottom:10px;" aria-hidden="true">⭐</div>
+        <h3 data-i18n="about.feature1_title">Trust</h3>
+        <p style="margin:0;" data-i18n="about.feature1_body">Every journey, properly planned.</p>
       </div>
-      <div class="card">
-        <h3 data-i18n="about.mission_title">Our Mission</h3>
-        <p data-i18n="about.mission_body">To make private coach travel in Sri Lanka dependable — clear pricing, real availability, and a driver who treats your trip like his own family's.</p>
+      <div class="card text-center">
+        <div style="font-size:2rem; margin-bottom:10px;" aria-hidden="true">🚌</div>
+        <h3 data-i18n="about.feature2_title">Comfort</h3>
+        <p style="margin:0;" data-i18n="about.feature2_body">Air conditioning and comfortable seating.</p>
       </div>
-      <div class="card">
-        <h3 data-i18n="about.experience_title">Our Experience</h3>
-        <p data-i18n="about.experience_body">Years of coastal routes, hill-country transfers, pilgrimage convoys and long wedding days have shaped how we plan every journey, down to rest stops and pickup timing.</p>
+      <div class="card text-center">
+        <div style="font-size:2rem; margin-bottom:10px;" aria-hidden="true">🤝</div>
+        <h3 data-i18n="about.feature3_title">Responsibility</h3>
+        <p style="margin:0;" data-i18n="about.feature3_body">Your safety and timing are our priority.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Photo + quick checklist, since visitors scan images faster than text -->
+<section class="section section-alt">
+  <div class="container grid-2" style="align-items:center;">
+    <div>
+      <img src="/images/featured-bus.jpg" alt="Sisara Coach parked and ready" style="border-radius:4px;" onerror="this.src='https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=900&q=80'">
+    </div>
+    <div>
+      <h2 data-i18n="about.highlight_title">AC Coach</h2>
+      <ul style="list-style:none; padding:0; margin:0 0 24px; display:flex; flex-direction:column; gap:10px;">
+        <li>✔ <span data-i18n="about.highlight_1">33 Seats</span></li>
+        <li>✔ <span data-i18n="about.highlight_2">Experienced Driver</span></li>
+        <li>✔ <span data-i18n="about.highlight_3">Island-wide Service</span></li>
+        <li>✔ <span data-i18n="about.highlight_4">Comfortable Seating</span></li>
+        <li>✔ <span data-i18n="about.highlight_5">Safe &amp; Reliable</span></li>
+      </ul>
+      <a href="/bus-details.html" class="btn btn-outline" data-i18n="about.highlight_cta">View bus details</a>
     </div>
   </div>
 </section>

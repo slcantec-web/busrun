@@ -31,26 +31,63 @@
   </nav>
 </header>
 
-<section class="section" style="padding-top:56px;">
-  <div class="container grid-2">
-    <div>
-      <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
-      <h1 data-i18n="contact.title">Talk to us directly</h1>
-      <div class="feature"><span class="dot"></span><div><h3 data-i18n="contact.phone_label" style="margin-bottom:4px;">Phone</h3><a href="tel:+94770000000">+94 77 000 0000</a></div></div>
-      <div class="feature"><span class="dot"></span><div><h3 data-i18n="contact.whatsapp_label" style="margin-bottom:4px;">WhatsApp</h3><a href="https://wa.me/94770000000" target="_blank" rel="noopener">+94 77 000 0000</a></div></div>
-      <div class="feature"><span class="dot"></span><div><h3 data-i18n="contact.email_label" style="margin-bottom:4px;">Email</h3><a href="mailto:info@sisaracoach.lk">info@sisaracoach.lk</a></div></div>
-      <h3 style="margin-top:32px;" data-i18n="contact.social_title">Follow along</h3>
-      <div style="display:flex; gap:14px;">
-        <a href="#" class="btn btn-outline">Facebook</a>
-        <a href="#" class="btn btn-outline">Instagram</a>
+<!-- Short hero -->
+<section class="section" style="padding-top:56px; padding-bottom:24px;">
+  <div class="container" style="max-width:640px;">
+    <span class="eyebrow" data-i18n="contact.eyebrow">Contact</span>
+    <h1 style="line-height:1.15;" data-i18n="contact.hero_title">Get in touch</h1>
+    <p class="lede" style="line-height:1.35;" data-i18n="contact.hero_body">Contact us today to plan your journey.</p>
+  </div>
+</section>
+
+<!-- Contact info first: phone / WhatsApp / email / location as scannable cards -->
+<section class="section" style="padding-top:0; padding-bottom:16px;">
+  <div class="container">
+    <div class="grid-2" style="gap:20px;">
+      <div class="card">
+        <div style="font-size:1.6rem;" aria-hidden="true">📞</div>
+        <h3 style="margin:10px 0 4px;" data-i18n="contact.phone_label">Phone</h3>
+        <a href="tel:+94770000000" style="font-family:var(--font-mono); font-size:1.05rem;">+94 77 000 0000</a>
+      </div>
+      <div class="card">
+        <div style="font-size:1.6rem;" aria-hidden="true">💬</div>
+        <h3 style="margin:10px 0 4px;" data-i18n="contact.whatsapp_label">WhatsApp</h3>
+        <p style="margin:0 0 8px;" data-i18n="contact.whatsapp_hint">Message us on WhatsApp for a quick reply.</p>
+        <a href="https://wa.me/94770000000" target="_blank" rel="noopener" style="font-family:var(--font-mono); font-size:1.05rem;">+94 77 000 0000</a>
+      </div>
+      <div class="card">
+        <div style="font-size:1.6rem;" aria-hidden="true">✉️</div>
+        <h3 style="margin:10px 0 4px;" data-i18n="contact.email_label">Email</h3>
+        <a href="mailto:info@sisaracoach.lk">info@sisaracoach.lk</a>
+      </div>
+      <div class="card">
+        <div style="font-size:1.6rem;" aria-hidden="true">📍</div>
+        <h3 style="margin:10px 0 4px;" data-i18n="contact.location_label">Location</h3>
+        <p style="margin:0;" data-i18n="contact.location_value">Negombo, Sri Lanka</p>
       </div>
     </div>
-    <div>
-      <h3 data-i18n="contact.map_title">Find us</h3>
-      <div style="border-radius:4px; overflow:hidden; border:1px solid var(--line);">
-        <iframe title="Sisara Coach location" width="100%" height="360" style="border:0;" loading="lazy"
-          src="https://www.google.com/maps?q=Negombo,Sri+Lanka&output=embed"></iframe>
-      </div>
+
+    <!-- Primary / secondary CTAs, right where visitors are already looking -->
+    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:32px;">
+      <a href="/booking.html" class="btn btn-primary" data-i18n="contact.cta_primary">Book now</a>
+      <a href="https://wa.me/94770000000" target="_blank" rel="noopener" class="btn btn-whatsapp" data-i18n="contact.cta_secondary">Message on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- Map supports the page now, instead of dominating it -->
+<section class="section section-alt" style="padding-top:40px;">
+  <div class="container" style="max-width:760px;">
+    <h3 data-i18n="contact.map_title">Find us</h3>
+    <div style="border-radius:4px; overflow:hidden; border:1px solid var(--line);">
+      <iframe title="Sisara Coach location" width="100%" height="280" style="border:0;" loading="lazy"
+        src="https://www.google.com/maps?q=Negombo,Sri+Lanka&output=embed"></iframe>
+    </div>
+
+    <h3 style="margin-top:36px;" data-i18n="contact.social_title">Follow along</h3>
+    <div style="display:flex; gap:14px;">
+      <a href="#" class="btn btn-outline">Facebook</a>
+      <a href="#" class="btn btn-outline">Instagram</a>
     </div>
   </div>
 </section>
