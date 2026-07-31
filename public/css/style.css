@@ -170,11 +170,39 @@ img { max-width: 100%; display: block; }
   background: var(--gold);
 }
 
-/* .nav-collapse wraps BOTH the page links and the lang-switch/Book Now
-   button. On desktop it's just a flex row sitting to the right of the
-   brand. On mobile (see media query below) the whole thing becomes the
-   single dropdown panel the hamburger opens — nothing is left stranded
-   outside the toggle. */
+/* .lang-switch now lives directly in the top bar (a sibling of
+   .nav-collapse, not inside it) so it stays visible on every screen size,
+   including when the mobile drawer is closed. margin-left:auto pushes it
+   — and everything after it — over to the right, which keeps its desktop
+   position essentially unchanged (immediately left of the nav links /
+   Book Now button). */
+.lang-switch {
+  display: flex;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  flex: none;
+  margin-left: auto;
+}
+.lang-switch button {
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  color: var(--ink);
+}
+.lang-switch button[aria-pressed="true"] {
+  background: var(--teal);
+  color: var(--cream);
+}
+
+/* .nav-collapse now wraps only the page links and the Book Now button.
+   On desktop it's a flex row sitting to the right of the lang-switch. On
+   mobile (see media query below) it becomes the dropdown panel the
+   hamburger opens — the lang-switch is intentionally left out of it so
+   it stays put in the sticky header. */
 .nav-collapse {
   display: flex;
   align-items: center;
@@ -211,27 +239,6 @@ img { max-width: 100%; display: block; }
 
 .nav-right { display: flex; align-items: center; gap: 16px; flex: none; }
 
-.lang-switch {
-  display: flex;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  overflow: hidden;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  flex: none;
-}
-.lang-switch button {
-  background: transparent;
-  border: none;
-  padding: 6px 12px;
-  cursor: pointer;
-  color: var(--ink);
-}
-.lang-switch button[aria-pressed="true"] {
-  background: var(--teal);
-  color: var(--cream);
-}
-
 .nav-toggle {
   display: none;
   background: none; border: none; cursor: pointer;
@@ -244,8 +251,9 @@ img { max-width: 100%; display: block; }
 @media (max-width: 860px) {
   .nav-toggle { display: flex; }
 
-  /* Everything (links + lang switch + Book Now) lives in one dropdown now,
-     so there's nothing left in the top bar to overflow or clip. */
+  /* Page links + Book Now live in the dropdown now; lang-switch stays
+     outside it in the top bar (see .lang-switch rule above), so nothing
+     needed here to keep it visible. */
   .nav-collapse {
     display: none;
     position: absolute;
@@ -275,7 +283,6 @@ img { max-width: 100%; display: block; }
     gap: 12px;
     width: 100%;
   }
-  .nav-right .lang-switch { align-self: flex-start; }
   .nav-right .btn { width: 100%; }
 }
 
